@@ -36,9 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderForecast(forecast) {
-        if (!forecastContainer) {
-            return;
-        }
+        if (!forecastContainer) return;
 
         forecastContainer.innerHTML = "";
 
@@ -58,9 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderCurrentWeather(data) {
-        if (!data) {
-            return;
-        }
+        if (!data) return;
 
         cityName.textContent = `${data.city}, ${data.country}`;
         weatherDescription.textContent = data.current.description;
@@ -79,8 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const weatherData = await fetchWeatherData(city);
             currentWeatherData = weatherData;
 
-            localStorage.setItem("selectedCity", weatherData.city);
-            localStorage.setItem("weatherData", JSON.stringify(weatherData));
+            // uses functions from storage.js
+            setSelectedCity(weatherData.city);
+            setWeatherData(weatherData);
 
             renderCurrentWeather(weatherData);
         } catch (error) {
@@ -105,18 +102,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const favorites = JSON.parse(localStorage.getItem("favoriteCities")) || [];
-        const cityExists = favorites.some(
-            (favorite) => favorite.toLowerCase() === currentWeatherData.city.toLowerCase()
+        const favorites = getFavoriteCities();
+
+        const exists = favorites.some(
+            (fav) => fav.toLowerCase() === currentWeatherData.city.toLowerCase()
         );
 
-        if (cityExists) {
+        if (exists) {
             showError("The city has already been added to your favorites.");
             return;
         }
 
-        favorites.push(currentWeatherData.city);
-        localStorage.setItem("favoriteCities", JSON.stringify(favorites));
+        // use the storage.js function
+        addFavoriteCity(currentWeatherData.city);
+
         showError(`"${currentWeatherData.city}" was added to favorites.`);
     }
 
@@ -136,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveFavoriteBtn.addEventListener("click", saveFavorite);
     }
 
-    const selectedCity = localStorage.getItem("selectedCity");
+    const selectedCity = getSelectedCity();
 
     if (selectedCity) {
         loadWeather(selectedCity);
