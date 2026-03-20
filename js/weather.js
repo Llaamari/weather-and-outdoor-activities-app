@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = document.getElementById("weatherErrorMessage");
     const loader = document.getElementById("loader");
     const errorCard = document.getElementById("weatherErrorCard");
+    const lastUpdated = document.getElementById("lastUpdated");
 
     const cityName = document.getElementById("cityName");
     const weatherDescription = document.getElementById("weatherDescription");
@@ -104,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
         feelsLike.textContent = `${data.current.feelsLike} °C`;
 
         renderForecast(data.forecast);
+
+        updateLastUpdated();
     }
 
     async function loadWeather(city) {
@@ -180,6 +183,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 showError("Location access was denied.");
             }
         );
+    }
+
+    function updateLastUpdated() {
+        if (!lastUpdated) return;
+        
+        const now = new Date();
+        
+        const timeString = now.toLocaleString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            day: "numeric",
+            month: "numeric"
+        });
+        
+        lastUpdated.textContent = `Last updated: ${timeString}`;
     }
 
     function saveFavorite() {
