@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const cityInput = document.getElementById("weatherCityInput");
     const searchBtn = document.getElementById("weatherSearchBtn");
+    const locationBtn = document.getElementById("weatherLocationBtn");
     const errorMessage = document.getElementById("weatherErrorMessage");
 
     const cityName = document.getElementById("cityName");
@@ -48,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="assets/icons/cloud.svg" class="icon">
                 <h4>${formatDate(day.date)}</h4>
                 <p><strong>Weather:</strong> ${day.description}</p>
-                <p><strong>Highest:</strong> ${day.tempMax} °C</p>
-                <p><strong>Lowest:</strong> ${day.tempMin} °C</p>
+                <p><strong>Max:</strong> ${day.tempMax} °C</p>
+                <p><strong>Min:</strong> ${day.tempMin} °C</p>
             `;
 
             forecastContainer.appendChild(forecastCard);
@@ -59,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderCurrentWeather(data) {
         if (!data) return;
 
-        cityName.textContent = `${data.city}, ${data.country}`;
+        cityName.textContent = data.country
+            ? `${data.city}, ${data.country}`
+            : data.city;
+
         weatherDescription.textContent = data.current.description;
         temperature.textContent = `${data.current.temperature} °C`;
         windSpeed.textContent = `${data.current.windSpeed} m/s`;
@@ -76,13 +80,34 @@ document.addEventListener("DOMContentLoaded", () => {
             const weatherData = await fetchWeatherData(city);
             currentWeatherData = weatherData;
 
-            // uses functions from storage.js
             setSelectedCity(weatherData.city);
             setWeatherData(weatherData);
+            localStorage.removeItem("selectedCoordinates");
 
             renderCurrentWeather(weatherData);
         } catch (error) {
-            showError(error.message || "The weather data failed to load.");
+            showError(error.message || "Failed to load weather data.");
+        }
+    }
+
+    async function loadWeatherByCoordinates(latitude, longitude) {
+        try {
+            clearError();
+
+            const weatherData = await fetchWeatherDataByCoordinates(latitude, longitude);
+            currentWeatherData = weatherData;
+
+            // uses functions from storage.js
+            setSelectedCity(weatherData.city);
+            setWeatherData(weatherData);
+            localStorage.setItem("selectedCoordinates", JSON.stringify({
+                latitude,
+                longitude
+            }));
+
+            renderCurrentWeather(weatherData);
+        } catch (error) {
+            showError(error.message || "Failed to load weather data for your location.");
         }
     }
 
@@ -90,16 +115,36 @@ document.addEventListener("DOMContentLoaded", () => {
         const city = cityInput.value.trim();
 
         if (city === "") {
-            showError("Enter the city name before searching.");
+            showError("Enter a city name before searching.");
             return;
         }
 
         loadWeather(city);
     }
 
+    function handleLocationSearch() {
+        if (!navigator.geolocation) {
+            showError("Geolocation is not supported by your browser.");
+            return;
+        }
+
+        clearError();
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                loadWeatherByCoordinates(lat, lon);
+            },
+            () => {
+                showError("Location access was denied.");
+            }
+        );
+    }
+
     function saveFavorite() {
         if (!currentWeatherData) {
-            showError("Check the city's weather forecast before saving.");
+            showError("Search weather first before saving favorites.");
             return;
         }
 
@@ -110,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (exists) {
-            showError("The city has already been added to your favorites.");
+            showError("This city is already in favorites.");
             return;
         }
 
@@ -132,13 +177,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (locationBtn) {
+        locationBtn.addEventListener("click", handleLocationSearch);
+    }
+
     if (saveFavoriteBtn) {
         saveFavoriteBtn.addEventListener("click", saveFavorite);
     }
 
+    const storedCoordinates = localStorage.getItem("selectedCoordinates");
     const selectedCity = getSelectedCity();
 
-    if (selectedCity) {
+    if (storedCoordinates) {
+        const coords = JSON.parse(storedCoordinates);
+        loadWeatherByCoordinates(coords.latitude, coords.longitude);
+    } else if (selectedCity) {
         loadWeather(selectedCity);
     }
 });

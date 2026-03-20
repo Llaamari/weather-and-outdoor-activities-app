@@ -116,6 +116,10 @@ header {
     flex-wrap: wrap;
 }
 
+.search-box .secondary-btn {
+    padding: 0.9rem 1.4rem;
+}
+
 .search-box input {
     flex: 1;
     min-width: 220px;
