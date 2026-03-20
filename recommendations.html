@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations | WeatherWise</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">WeatherWise</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="recommendations.html" class="active">Recommendations</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="about.html">Information</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="page-header">
+            <h2>Weather-based recommendations</h2>
+            <p>
+                On this page, you'll find recommendations based on the weather in your selected city
+                for outdoor activities, what to wear and daily activities.
+            </p>
+        </section>
+
+        <section class="selected-city-section">
+            <div class="weather-card">
+                <h3 id="recommendationCityName">No city selected</h3>
+                <p id="recommendationWeatherText">
+                    First, check the weather in your city to get personalized recommendations.
+                </p>
+            </div>
+        </section>
+
+        <section class="recommendation-summary-section">
+            <div id="recommendationSummaryCard" class="recommendation-summary-card">
+                <h3>Summary of the Day</h3>
+                <p id="recommendationSummary">
+                    A summary of the recommendations will appear here once weather data is available.
+                </p>
+            </div>
+        </section>
+
+        <section class="recommendations-grid">
+
+            <div class="recommendation-card">
+                <h4>👕 Clothing</h4>
+                <p id="clothingRecommendation">
+                    The dress code is listed here.
+                </p>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>🏃 Outdoor activities</h4>
+                <p id="activityRecommendation">
+                    The activity recommendation is displayed here.
+                </p>
+            </div>
+
+            <div class="recommendation-card">
+                <h4>☔ Preparedness</h4>
+                <p id="gearRecommendation">
+                    The recommended equipment is listed here.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="conditions-section">
+            <h3>Weather Summary</h3>
+
+            <div class="weather-details">
+                <div class="detail-box">
+                    <span class="label">Temperature</span>
+                    <span id="recommendationTemperature" class="value">-- °C</span>
+                </div>
+
+                <div class="detail-box">
+                    <span class="label">Wind</span>
+                    <span id="recommendationWind" class="value">-- m/s</span>
+                </div>
+
+                <div class="detail-box">
+                    <span class="label">Humidity</span>
+                    <span id="recommendationHumidity" class="value">-- %</span>
+                </div>
+
+                <div class="detail-box">
+                    <span class="label">Weather</span>
+                    <span id="recommendationCondition" class="value">--</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="actions-section">
+            <a href="weather.html" class="primary-btn">Back to the weather</a>
+            <a href="favorites.html" class="secondary-btn">Open Favorites</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 WeatherWise</p>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/recommendations.js"></script>
+
+</body>
+</html>
