@@ -317,6 +317,20 @@ header {
     color: #475569;
 }
 
+.icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.card img,
+.recommendation-card img,
+.favorite-card img {
+    margin-bottom: 0.5rem;
+}
+
 /* FOOTER */
 footer {
     background-color: #111827;
