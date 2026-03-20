@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function formatDate(dateString) {
         const date = new Date(dateString);
-        return date.toLocaleDateString("fi-FI", {
+        return date.toLocaleDateString("en-EN", {
             weekday: "short",
             day: "numeric",
             month: "numeric"
