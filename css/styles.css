@@ -9,6 +9,7 @@ body {
     line-height: 1.6;
     background-color: #f4f7fb;
     color: #1f2937;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -338,6 +339,124 @@ footer {
     text-align: center;
     padding: 1.2rem;
     margin-top: 2rem;
+}
+
+/* THEME BUTTON */
+.theme-btn {
+    background: #ffffff;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* DARK MODE */
+body.dark {
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+/* Navbar */
+body.dark header {
+    background-color: #1e293b;
+}
+
+/* Cards */
+body.dark .card,
+body.dark .weather-card,
+body.dark .forecast-card,
+body.dark .recommendation-card,
+body.dark .favorite-card,
+body.dark .recommendation-summary-card {
+    background-color: #1e293b;
+    color: #e5e7eb;
+}
+
+/* Inputs */
+body.dark input {
+    background-color: #1e293b;
+    color: #e5e7eb;
+    border: 1px solid #475569;
+}
+
+/* Buttons */
+body.dark .secondary-btn {
+    background-color: #334155;
+    color: #e5e7eb;
+}
+
+/* Detail boxes */
+body.dark .detail-box {
+    background-color: #334155;
+}
+
+body.dark .hero h2,
+body.dark .page-header h2,
+body.dark .search-section h3,
+body.dark .current-weather-section h3,
+body.dark .forecast-section h3,
+body.dark .conditions-section h3,
+body.dark .favorites-list-section h3,
+body.dark .card h3,
+body.dark .card h4,
+body.dark .recommendation-card h4,
+body.dark .forecast-card h4,
+body.dark .favorite-card h4,
+body.dark .weather-card h3,
+body.dark .weather-card h4,
+body.dark .recommendation-summary-card h3 {
+    color: #f8fafc;
+}
+
+body.dark .hero p,
+body.dark .page-header p,
+body.dark .card p,
+body.dark .recommendation-card p,
+body.dark .forecast-card p,
+body.dark .favorite-card p,
+body.dark .weather-card p,
+body.dark .recommendation-summary-card p,
+body.dark .about-list li,
+body.dark .info-text,
+body.dark .label {
+    color: #cbd5e1;
+}
+
+body.dark .value {
+    color: #93c5fd;
+}
+
+body.dark .search-section {
+    background-color: #1e293b;
+    color: #e5e7eb;
+}
+
+body.dark .search-box input::placeholder {
+    color: #94a3b8;
+}
+
+body.dark .theme-btn {
+    background-color: #334155;
+    color: #f8fafc;
+}
+
+body.dark .nav-links a:hover,
+body.dark .nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+body.dark footer {
+    background-color: #020617;
+    color: #e5e7eb;
+}
+
+body.dark .error {
+    color: #fca5a5;
+}
+
+body.dark .icon {
+    filter: brightness(0) invert(1);
 }
 
 /* RESPONSIVE */
