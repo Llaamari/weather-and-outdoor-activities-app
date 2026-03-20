@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
 
         <section class="search-section">
             <h3>
-                <img src="assets/icons/location.svg" class="icon">
+                <img src="assets/icons/location.svg" class="icon" alt="Location">
                 Search for a new city
             </h3>
             <div class="search-box">
@@ -48,9 +48,19 @@
                 <button id="weatherLocationBtn" class="secondary-btn">Use my location</button>
             </div>
             <div id="weatherErrorCard" class="error-card hidden">
-                <h4><img src="assets/icons/cross.svg" class="icon">City not found</h4>
+                <h4>
+                    <img src="assets/icons/cross.svg" class="icon" alt="Cross">
+                    City not found
+                </h4>
                 <p id="weatherErrorMessage">Please check the spelling and try again.</p>
                 <p class="error-hint">Try again with another city name.</p>
+            </div>
+            <div id="weatherSuccessCard" class="success-card hidden">
+                <h4>
+                    <img src="assets/icons/check.svg" class="icon" alt="Check">
+                    Success
+                </h4>
+                <p id="weatherSuccessMessage"></p>
             </div>
         </section>
 
@@ -88,25 +98,7 @@
 
         <section class="forecast-section">
             <h3>Weather Forecast</h3>
-            <div id="forecastContainer" class="forecast-grid">
-                <div class="forecast-card">
-                    <h4>Day 1</h4>
-                    <p>Temperature: -- °C</p>
-                    <p>Weather: --</p>
-                </div>
-
-                <div class="forecast-card">
-                    <h4>Day 2</h4>
-                    <p>Temperature: -- °C</p>
-                    <p>Weather: --</p>
-                </div>
-
-                <div class="forecast-card">
-                    <h4>Day 3</h4>
-                    <p>Temperature: -- °C</p>
-                    <p>Weather: --</p>
-                </div>
-            </div>
+            <div id="forecastContainer" class="forecast-grid"></div>
         </section>
 
         <section class="actions-section">

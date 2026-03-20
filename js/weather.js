@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = document.getElementById("weatherErrorMessage");
     const loader = document.getElementById("loader");
     const errorCard = document.getElementById("weatherErrorCard");
+    const successCard = document.getElementById("weatherSuccessCard");
+    const successMessage = document.getElementById("weatherSuccessMessage");
     const lastUpdated = document.getElementById("lastUpdated");
 
     const cityName = document.getElementById("cityName");
@@ -31,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showError(message) {
+        clearSuccess();
+
         if (errorMessage) {
             errorMessage.textContent = message;
         }
@@ -47,6 +51,28 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (errorCard) {
             errorCard.classList.add("hidden");
+        }
+    }
+
+    function showSuccess(message) {
+        clearError();
+
+        if (successMessage) {
+            successMessage.textContent = message;
+        }
+
+        if (successCard) {
+            successCard.classList.remove("hidden");
+        }
+    }
+
+    function clearSuccess() {
+        if (successMessage) {
+            successMessage.textContent = "";
+        }
+
+        if (successCard) {
+            successCard.classList.add("hidden");
         }
     }
 
@@ -78,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
             forecastCard.classList.add("forecast-card");
 
             forecastCard.innerHTML = `
-                <img src="assets/icons/cloud.svg" class="icon">
+                <img src="assets/icons/cloud.svg" class="icon" alt="Cloud">
                 <h4>${formatDate(day.date)}</h4>
                 <p><strong>Weather:</strong> ${day.description}</p>
                 <p><strong>Max:</strong> ${day.tempMax} °C</p>
@@ -113,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             showLoader();
             clearError();
+            clearSuccess();
 
             const weatherData = await fetchWeatherData(city);
             currentWeatherData = weatherData;
@@ -133,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             showLoader();
             clearError();
+            clearSuccess();
 
             const weatherData = await fetchWeatherDataByCoordinates(latitude, longitude);
             currentWeatherData = weatherData;
@@ -170,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         clearError();
+        clearSuccess();
         showLoader();
 
         navigator.geolocation.getCurrentPosition(
@@ -218,8 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         addFavoriteCity(currentWeatherData.city);
-
-        showError(`"${currentWeatherData.city}" was added to favorites.`);
+        showSuccess(`"${currentWeatherData.city}" was added to favorites.`);
     }
 
     if (searchBtn) {

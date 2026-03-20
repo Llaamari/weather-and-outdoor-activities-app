@@ -476,6 +476,26 @@ header {
     font-weight: 500;
 }
 
+.success-card {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.success-card h4 {
+    margin-bottom: 0.4rem;
+    color: #047857;
+    font-size: 1rem;
+}
+
+.success-card p {
+    margin: 0.2rem 0;
+    color: #065f46;
+}
+
 .last-updated {
     margin-top: 0.5rem;
     font-size: 0.9rem;
@@ -698,6 +718,19 @@ body.dark .error-card h4 {
 
 body.dark .error-card p {
     color: #fecaca;
+}
+
+body.dark .success-card {
+    background-color: #052e25;
+    border: 1px solid #065f46;
+}
+
+body.dark .success-card h4 {
+    color: #6ee7b7;
+}
+
+body.dark .success-card p {
+    color: #a7f3d0;
 }
 
 body.dark .last-updated {

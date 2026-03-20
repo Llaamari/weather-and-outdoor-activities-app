@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,16 +44,7 @@
         <section class="favorites-list-section">
             <h3>Saved cities</h3>
 
-            <div id="favoritesContainer" class="favorites-grid">
-                <div class="favorite-card">
-                    <h4>Sample City</h4>
-                    <p>Your saved favorites are displayed here.</p>
-                    <div class="favorite-actions">
-                        <button class="primary-btn">Show weather</button>
-                        <button class="danger-btn">Delete</button>
-                    </div>
-                </div>
-            </div>
+            <div id="favoritesContainer" class="favorites-grid"></div>
 
             <p id="favoritesMessage" class="info-text">
                 You don't have any saved favorites yet.
@@ -62,19 +53,19 @@
 
         <section class="info-section">
             <div class="card">
-                <img src="assets/icons/star.svg" class="icon" alt="">
+                <img src="assets/icons/star.svg" class="icon" alt="Star">
                 <h4>Save easily</h4>
                 <p>You can add a city to your favorites from the weather page with a single click.</p>
             </div>
 
             <div class="card">
-                <img src="assets/icons/return.svg" class="icon" alt="">
+                <img src="assets/icons/return.svg" class="icon" alt="Return">
                 <h4>Return quickly</h4>
                 <p>Reload the weather information for the same city without performing a new search.</p>
             </div>
 
             <div class="card">
-                <img src="assets/icons/broom.svg" class="icon" alt="">
+                <img src="assets/icons/broom.svg" class="icon" alt="Broom">
                 <h4>Manage the list</h4>
                 <p>Remove individual favorites or clear the entire list at once.</p>
             </div>
@@ -85,11 +76,6 @@
     <footer>
         <p>© 2026 ClimaGuide</p>
     </footer>
-
-    <div id="loader" class="loader hidden">
-        <div class="spinner"></div>
-        <p>Loading...</p>
-    </div>
 
     <script src="js/storage.js"></script>
     <script src="js/main.js"></script>
