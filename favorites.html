@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites | WeatherWise</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">WeatherWise</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="recommendations.html">Recommendations</a></li>
+                <li><a href="favorites.html" class="active">Favorites</a></li>
+                <li><a href="about.html">Information</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="page-header">
+            <h2>Favorite Cities</h2>
+            <p>
+                Here you can see the cities you've saved. You can view their weather information
+                again or remove a city from your favorites.
+            </p>
+        </section>
+
+        <section class="favorites-controls">
+            <div class="actions-section">
+                <a href="weather.html" class="primary-btn">Search for a new city</a>
+                <button id="clearFavoritesBtn" class="secondary-btn">Remove all favorites</button>
+            </div>
+        </section>
+
+        <section class="favorites-list-section">
+            <h3>Saved cities</h3>
+
+            <div id="favoritesContainer" class="favorites-grid">
+                <div class="favorite-card">
+                    <h4>Sample City</h4>
+                    <p>Your saved favorites are displayed here.</p>
+                    <div class="favorite-actions">
+                        <button class="primary-btn">Show weather</button>
+                        <button class="danger-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <p id="favoritesMessage" class="info-text">
+                You don't have any saved favorites yet.
+            </p>
+        </section>
+
+        <section class="info-section">
+            <div class="card">
+                <h4>⭐ Save easily</h4>
+                <p>You can add a city to your favorites from the weather page with a single click.</p>
+            </div>
+
+            <div class="card">
+                <h4>🌍 Back to top</h4>
+                <p>Reload the weather information for the same city without performing a new search.</p>
+            </div>
+
+            <div class="card">
+                <h4>🧹 Manage the list</h4>
+                <p>Remove individual favorites or clear the entire list at once.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 WeatherWise</p>
+    </footer>
+
+    <script src="js/storage.js"></script>
+
+</body>
+</html>
