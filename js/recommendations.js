@@ -101,6 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function getTemperatureColor(temp) {
+        if (temp < -10) return "#1d4ed8";
+        if (temp < 0) return "#3b82f6";
+        if (temp < 10) return "#22c55e";
+        if (temp < 20) return "#eab308";
+        if (temp < 30) return "#f97316";
+        return "#ef4444";
+    }
+
     function getClothingRecommendation(temp, windSpeed) {
         if (temp < 0) {
             return "Wear a warm winter coat, gloves, a beanie and insulated shoes.";
@@ -227,7 +236,9 @@ document.addEventListener("DOMContentLoaded", () => {
             weatherData.current.description
         );
 
-        temperature.textContent = `${weatherData.current.temperature} °C`;
+        const temp = weatherData.current.temperature;
+        temperature.textContent = `${temp} °C`;
+        temperature.style.color = getTemperatureColor(temp);
         wind.textContent = `${weatherData.current.windSpeed} m/s`;
         humidity.textContent = `${weatherData.current.humidity} %`;
         condition.textContent = weatherData.current.description;
@@ -243,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activityRecommendation.textContent = "No activity recommendation available yet.";
         gearRecommendation.textContent = "No gear recommendation available yet.";
         temperature.textContent = "-- °C";
+        temperature.style.color = "";
         wind.textContent = "-- m/s";
         humidity.textContent = "-- %";
         condition.textContent = "--";

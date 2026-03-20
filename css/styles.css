@@ -407,6 +407,11 @@ header {
     transform: translateY(-1px);
 }
 
+#temperature,
+#recommendationTemperature {
+    transition: color 0.3s ease;
+}
+
 /* LOADER OVERLAY */
 .loader {
     position: fixed;

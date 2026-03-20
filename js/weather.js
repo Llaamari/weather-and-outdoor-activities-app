@@ -49,6 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function getTemperatureColor(temp) {
+        if (temp < -10) return "#1d4ed8";
+        if (temp < 0) return "#3b82f6";
+        if (temp < 10) return "#22c55e";
+        if (temp < 20) return "#eab308";
+        if (temp < 30) return "#f97316";
+        return "#ef4444";
+    }
+
     function renderForecast(forecast) {
         if (!forecastContainer) return;
 
@@ -78,7 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
             : data.city;
 
         weatherDescription.textContent = data.current.description;
-        temperature.textContent = `${data.current.temperature} °C`;
+        const temp = data.current.temperature;
+        temperature.textContent = `${temp} °C`;
+        temperature.style.color = getTemperatureColor(temp);
         windSpeed.textContent = `${data.current.windSpeed} m/s`;
         humidity.textContent = `${data.current.humidity} %`;
         feelsLike.textContent = `${data.current.feelsLike} °C`;
@@ -114,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const weatherData = await fetchWeatherDataByCoordinates(latitude, longitude);
             currentWeatherData = weatherData;
 
-            // uses functions from storage.js
             setSelectedCity(weatherData.city);
             setWeatherData(weatherData);
             localStorage.setItem("selectedCoordinates", JSON.stringify({
@@ -180,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // use the storage.js function
         addFavoriteCity(currentWeatherData.city);
 
         showError(`"${currentWeatherData.city}" was added to favorites.`);
