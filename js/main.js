@@ -4,25 +4,83 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = document.getElementById("errorMessage");
     const themeBtn = document.getElementById("themeToggleBtn");
     const locationBtn = document.getElementById("locationBtn");
+    const historyContainer = document.getElementById("searchHistoryContainer");
+    const historyEmptyMessage = document.getElementById("historyEmptyMessage");
 
-    function handleSearch() {
-        const city = cityInput.value.trim();
+    function showMainError(message) {
+        if (errorMessage) {
+            errorMessage.textContent = message;
+        }
+    }
 
-        if (city === "") {
-            errorMessage.textContent = "Enter the city name before searching.";
+    function getSearchHistory() {
+        return JSON.parse(localStorage.getItem("searchHistory")) || [];
+    }
+
+    function saveSearchHistory(history) {
+        localStorage.setItem("searchHistory", JSON.stringify(history));
+    }
+
+    function addToSearchHistory(city) {
+        let history = getSearchHistory();
+
+        history = history.filter(
+            (item) => item.toLowerCase() !== city.toLowerCase()
+        );
+
+        history.unshift(city);
+
+        if (history.length > 5) {
+            history = history.slice(0, 5);
+        }
+
+        saveSearchHistory(history);
+    }
+
+    function handleHistoryClick(city) {
+        localStorage.setItem("selectedCity", city);
+        localStorage.removeItem("selectedCoordinates");
+        window.location.href = "weather.html";
+    }
+
+    function renderSearchHistory() {
+        if (!historyContainer || !historyEmptyMessage) {
             return;
         }
 
-        errorMessage.textContent = "";
+        const history = getSearchHistory();
+        historyContainer.innerHTML = "";
+
+        if (history.length === 0) {
+            historyEmptyMessage.style.display = "block";
+            historyContainer.appendChild(historyEmptyMessage);
+            return;
+        }
+
+        historyEmptyMessage.style.display = "none";
+
+        history.forEach((city) => {
+            const button = document.createElement("button");
+            button.classList.add("history-btn");
+            button.textContent = city;
+            button.addEventListener("click", () => handleHistoryClick(city));
+            historyContainer.appendChild(button);
+        });
+    }
+
+    function handleSearch() {
+        const city = cityInput ? cityInput.value.trim() : "";
+
+        if (city === "") {
+            showMainError("Enter the city name before searching.");
+            return;
+        }
+
+        showMainError("");
 
         localStorage.setItem("selectedCity", city);
-
-        const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-
-        if (!searchHistory.includes(city)) {
-            searchHistory.push(city);
-            localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-        }
+        localStorage.removeItem("selectedCoordinates");
+        addToSearchHistory(city);
 
         window.location.href = "weather.html";
     }
@@ -67,12 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
-
-    function showMainError(message) {
-        if (errorMessage) {
-            errorMessage.textContent = message;
-        }
-    }
     
     function handleLocationSearch() {
         if (!navigator.geolocation) {
@@ -96,7 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         latitude: lat,
                         longitude: lon
                     }));
-                    
+
+                    addToSearchHistory(weatherData.city);
+                    renderSearchHistory();
+
                     window.location.href = "weather.html";
                 } catch (error) {
                     showMainError(error.message || "Failed to fetch weather for your location.");
@@ -111,4 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (locationBtn) {
         locationBtn.addEventListener("click", handleLocationSearch);
     }
+
+    renderSearchHistory();
 });
