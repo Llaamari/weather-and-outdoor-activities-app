@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherWise</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">WeatherWise</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="recommendations.html">Recommendations</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="about.html">Information</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <section class="hero">
+            <h2>Welcome to WeatherWise</h2>
+            <p>
+                Search for the weather in any city and get recommendations for outdoor activities,
+                what to wear and things to do.
+            </p>
+        </section>
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+            <h3>Check the weather</h3>
+
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="cityInput" 
+                    placeholder="Enter a city (e.g., Helsinki)" 
+                >
+                <button id="searchBtn">Search</button>
+            </div>
+
+            <p id="errorMessage" class="error"></p>
+        </section>
+
+        <!-- QUICK INFO -->
+        <section class="info-section">
+            <div class="card">
+                <h4>🌤️ Weather</h4>
+                <p>See the current weather and forecast.</p>
+            </div>
+
+            <div class="card">
+                <h4>🏃 Recommendations</h4>
+                <p>Get tips for outdoor activities based on the weather.</p>
+            </div>
+
+            <div class="card">
+                <h4>⭐ Favorites</h4>
+                <p>Easily save your favorite cities.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 WeatherWise</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
