@@ -412,6 +412,31 @@ header {
     transition: color 0.3s ease;
 }
 
+.error-card {
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.error-card h4 {
+    margin-bottom: 0.4rem;
+    color: #b91c1c;
+    font-size: 1rem;
+}
+
+.error-card p {
+    margin: 0.2rem 0;
+    color: #7f1d1d;
+}
+
+.error-hint {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
 /* LOADER OVERLAY */
 .loader {
     position: fixed;
@@ -609,6 +634,19 @@ body.dark .loader {
 body.dark .spinner {
     border: 5px solid #334155;
     border-top: 5px solid #60a5fa;
+}
+
+body.dark .error-card {
+    background-color: #3f1d1d;
+    border: 1px solid #7f1d1d;
+}
+
+body.dark .error-card h4 {
+    color: #fca5a5;
+}
+
+body.dark .error-card p {
+    color: #fecaca;
 }
 
 @keyframes spin {

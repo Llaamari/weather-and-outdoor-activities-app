@@ -47,7 +47,11 @@
                 <button id="weatherSearchBtn">Search</button>
                 <button id="weatherLocationBtn" class="secondary-btn">Use my location</button>
             </div>
-            <p id="weatherErrorMessage" class="error"></p>
+            <div id="weatherErrorCard" class="error-card hidden">
+                <h4><img src="assets/icons/cross.svg" class="icon">City not found</h4>
+                <p id="weatherErrorMessage">Please check the spelling and try again.</p>
+                <p class="error-hint">Try again with another city name.</p>
+            </div>
         </section>
 
         <section class="current-weather-section">

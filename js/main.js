@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const historyContainer = document.getElementById("searchHistoryContainer");
     const historyEmptyMessage = document.getElementById("historyEmptyMessage");
     const loader = document.getElementById("loader");
+    const errorCard = document.getElementById("errorCard");
 
     function showLoader() {
         if (loader) {
@@ -23,6 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
     function showMainError(message) {
         if (errorMessage) {
             errorMessage.textContent = message;
+        }
+        
+        if (errorCard) {
+            errorCard.classList.remove("hidden");
+        }
+    }
+
+    function clearMainError() {
+        if (errorMessage) {
+            errorMessage.textContent = "";
+        }
+        
+        if (errorCard) {
+            errorCard.classList.add("hidden");
         }
     }
 
@@ -89,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        showMainError("");
+        clearMainError();
         showLoader();
 
         localStorage.setItem("selectedCity", city);
@@ -146,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-        showMainError("");
+        clearMainError();
         showLoader();
         
         navigator.geolocation.getCurrentPosition(

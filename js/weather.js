@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const locationBtn = document.getElementById("weatherLocationBtn");
     const errorMessage = document.getElementById("weatherErrorMessage");
     const loader = document.getElementById("loader");
+    const errorCard = document.getElementById("weatherErrorCard");
 
     const cityName = document.getElementById("cityName");
     const weatherDescription = document.getElementById("weatherDescription");
@@ -32,11 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (errorMessage) {
             errorMessage.textContent = message;
         }
+        
+        if (errorCard) {
+            errorCard.classList.remove("hidden");
+        }
     }
 
     function clearError() {
         if (errorMessage) {
             errorMessage.textContent = "";
+        }
+        
+        if (errorCard) {
+            errorCard.classList.add("hidden");
         }
     }
 
