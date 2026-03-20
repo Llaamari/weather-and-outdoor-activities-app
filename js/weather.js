@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             forecastCard.classList.add("forecast-card");
 
             forecastCard.innerHTML = `
+                <img src="assets/icons/cloud.svg" class="icon">
                 <h4>${formatDate(day.date)}</h4>
                 <p><strong>Weather:</strong> ${day.description}</p>
                 <p><strong>Highest:</strong> ${day.tempMax} °C</p>
