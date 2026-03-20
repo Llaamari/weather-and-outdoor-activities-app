@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const locationBtn = document.getElementById("locationBtn");
     const historyContainer = document.getElementById("searchHistoryContainer");
     const historyEmptyMessage = document.getElementById("historyEmptyMessage");
+    const loader = document.getElementById("loader");
+
+    function showLoader() {
+        if (loader) {
+            loader.classList.remove("hidden");
+        }
+    }
+
+    function hideLoader() {
+        if (loader) {
+            loader.classList.add("hidden");
+        }
+    }
 
     function showMainError(message) {
         if (errorMessage) {
@@ -77,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         showMainError("");
+        showLoader();
 
         localStorage.setItem("selectedCity", city);
         localStorage.removeItem("selectedCoordinates");
@@ -133,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         showMainError("");
+        showLoader();
         
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -154,10 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     window.location.href = "weather.html";
                 } catch (error) {
+                    hideLoader();
                     showMainError(error.message || "Failed to fetch weather for your location.");
                 }
             },
             () => {
+                hideLoader();
                 showMainError("Location access was denied.");
             }
         );
@@ -168,4 +185,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     renderSearchHistory();
+    hideLoader();
 });

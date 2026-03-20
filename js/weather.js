@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBtn = document.getElementById("weatherSearchBtn");
     const locationBtn = document.getElementById("weatherLocationBtn");
     const errorMessage = document.getElementById("weatherErrorMessage");
+    const loader = document.getElementById("loader");
 
     const cityName = document.getElementById("cityName");
     const weatherDescription = document.getElementById("weatherDescription");
@@ -14,6 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveFavoriteBtn = document.getElementById("saveFavoriteBtn");
 
     let currentWeatherData = null;
+
+    function showLoader() {
+        if (loader) {
+            loader.classList.remove("hidden");
+        }
+    }
+
+    function hideLoader() {
+        if (loader) {
+            loader.classList.add("hidden");
+        }
+    }
 
     function showError(message) {
         if (errorMessage) {
@@ -75,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadWeather(city) {
         try {
+            showLoader();
             clearError();
 
             const weatherData = await fetchWeatherData(city);
@@ -87,11 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCurrentWeather(weatherData);
         } catch (error) {
             showError(error.message || "Failed to load weather data.");
+        } finally {
+            hideLoader();
         }
     }
 
     async function loadWeatherByCoordinates(latitude, longitude) {
         try {
+            showLoader();
             clearError();
 
             const weatherData = await fetchWeatherDataByCoordinates(latitude, longitude);
@@ -108,6 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
             renderCurrentWeather(weatherData);
         } catch (error) {
             showError(error.message || "Failed to load weather data for your location.");
+        } finally {
+            hideLoader();
         }
     }
 
@@ -129,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         clearError();
+        showLoader();
 
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -137,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 loadWeatherByCoordinates(lat, lon);
             },
             () => {
+                hideLoader();
                 showError("Location access was denied.");
             }
         );
@@ -193,5 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadWeatherByCoordinates(coords.latitude, coords.longitude);
     } else if (selectedCity) {
         loadWeather(selectedCity);
+    } else {
+        hideLoader();
     }
 });
