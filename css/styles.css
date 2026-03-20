@@ -175,6 +175,29 @@ header {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+.card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.forecast-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.forecast-card,
+.history-btn {
+    cursor: pointer;
+}
+
 .card h3,
 .card h4,
 .recommendation-card h4,
@@ -386,6 +409,17 @@ header {
     color: #111827;
 }
 
+.history-section,
+.search-section {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.history-section:hover,
+.search-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
 .history-list {
     display: flex;
     flex-wrap: wrap;
@@ -419,6 +453,11 @@ header {
     background-color: #fef2f2;
     border: 1px solid #fecaca;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+}
+
+.error-card:hover {
+    transform: scale(1.01);
 }
 
 .error-card h4 {
@@ -512,6 +551,12 @@ body.dark .favorite-card,
 body.dark .recommendation-summary-card {
     background-color: #1e293b;
     color: #e5e7eb;
+}
+
+body.dark .forecast-card:hover,
+body.dark .history-section:hover,
+body.dark .search-section:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Inputs */
