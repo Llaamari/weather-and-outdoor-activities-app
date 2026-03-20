@@ -108,39 +108,12 @@ async function fetchWeatherData(city) {
     return formatWeatherData(locationData, weatherData);
 }
 
-async function getLocationNameByCoordinates(latitude, longitude) {
-    const url = `${GEO_API_BASE_URL}?latitude=${latitude}&longitude=${longitude}&language=en&format=json`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error("Failed to get location name from coordinates.");
-    }
-
-    const data = await response.json();
-
-    if (!data.results || data.results.length === 0) {
-        return {
-            name: "Current location",
-            country: ""
-        };
-    }
-
-    const location = data.results[0];
-
-    return {
-        name: location.name || "Current location",
-        country: location.country || ""
-    };
-}
-
 async function fetchWeatherDataByCoordinates(latitude, longitude) {
-    const locationData = await getLocationNameByCoordinates(latitude, longitude);
     const weatherData = await getWeatherByCoordinates(latitude, longitude);
 
     return {
-        city: locationData.name,
-        country: locationData.country,
+        city: "Current location",
+        country: "",
         latitude: latitude,
         longitude: longitude,
         current: {
