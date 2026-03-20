@@ -45,10 +45,6 @@ function setWeatherData(data) {
     localStorage.setItem("weatherData", JSON.stringify(data));
 }
 
-function getWeatherData() {
-    return JSON.parse(localStorage.getItem("weatherData")) || null;
-}
-
 function createFavoriteCard(city) {
     const card = document.createElement("div");
     card.classList.add("favorite-card");

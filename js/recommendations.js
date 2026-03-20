@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let score = 100;
         const description = weatherDescription.toLowerCase();
 
-        // Temperature effect
         if (temp < -15) {
             score -= 45;
         } else if (temp < -5) {
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
             score += 5;
         }
 
-        // Wind effect
         if (windSpeed > 20) {
             score -= 35;
         } else if (windSpeed > 12) {
@@ -40,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
             score -= 10;
         }
 
-        // Weather condition effect
         if (description.includes("thunderstorm")) {
             score -= 50;
         } else if (description.includes("heavy rain")) {
