@@ -1,9 +1,12 @@
+/* This is a CSS stylesheet that defines the appearance of the entire app */
+/* Factory reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Full-page layout */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -12,6 +15,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Default settings for general elements */
 a {
     text-decoration: none;
     color: inherit;
@@ -26,7 +30,7 @@ img {
     display: block;
 }
 
-/* LAYOUT */
+/* Content alignment */
 .container {
     width: 90%;
     max-width: 1100px;
@@ -34,7 +38,7 @@ img {
     padding: 2rem 0;
 }
 
-/* NAVBAR */
+/* Header and navigation */
 header {
     background-color: #2563eb;
     color: #ffffff;
@@ -74,7 +78,7 @@ header {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* HERO / PAGE HEADERS */
+/* Hero and page header sections */
 .hero,
 .page-header {
     text-align: center;
@@ -96,7 +100,7 @@ header {
     font-size: 1.05rem;
 }
 
-/* SEARCH */
+/* Search box */
 .search-section {
     background-color: #ffffff;
     padding: 1.5rem;
@@ -147,7 +151,7 @@ header {
     transform: translateY(-1px);
 }
 
-/* GENERIC CARDS */
+/* Cards and grid structures */
 .info-section,
 .about-section,
 .recommendations-grid,
@@ -217,7 +221,6 @@ header {
     color: #4b5563;
 }
 
-/* WEATHER DETAILS */
 .current-weather-section,
 .forecast-section,
 .conditions-section,
@@ -235,6 +238,7 @@ header {
     color: #111827;
 }
 
+/* Weather details boxes */
 .weather-details {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -263,7 +267,6 @@ header {
     color: #1e3a8a;
 }
 
-/* BUTTONS / ACTIONS */
 .actions-section {
     display: flex;
     gap: 1rem;
@@ -271,6 +274,7 @@ header {
     margin-bottom: 2rem;
 }
 
+/* Buttons */
 .primary-btn,
 .secondary-btn,
 .danger-btn {
@@ -320,7 +324,7 @@ header {
     margin-top: 1rem;
 }
 
-/* ABOUT */
+/* About page and informational texts */
 .about-list {
     padding-left: 1.2rem;
     list-style: disc;
@@ -331,13 +335,12 @@ header {
     color: #4b5563;
 }
 
-/* TEXT HELPERS */
-
 .info-text {
     margin-top: 1rem;
     color: #475569;
 }
 
+/* Icons */
 .icon {
     width: 28px;
     height: 28px;
@@ -374,6 +377,7 @@ header {
     font-weight: bold;
 }
 
+/* Outdoor Score Bar */
 .score-bar {
     width: 100%;
     height: 18px;
@@ -413,6 +417,7 @@ header {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Search history */
 .history-list {
     display: flex;
     flex-wrap: wrap;
@@ -439,6 +444,7 @@ header {
     transition: color 0.3s ease;
 }
 
+/* Error and Success Cards */
 .error-card {
     margin-top: 1rem;
     padding: 1rem 1.2rem;
@@ -495,7 +501,7 @@ header {
     color: #6b7280;
 }
 
-/* LOADER OVERLAY */
+/* Loader and spinner */
 .loader {
     position: fixed;
     top: 0;
@@ -514,7 +520,6 @@ header {
     display: none;
 }
 
-/* SPINNER */
 .spinner {
     width: 48px;
     height: 48px;
@@ -525,7 +530,7 @@ header {
     margin-bottom: 1rem;
 }
 
-/* FOOTER */
+/* Footer */
 footer {
     background-color: #111827;
     color: #ffffff;
@@ -534,7 +539,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* THEME BUTTON */
+/* Theme button */
 .theme-btn {
     background: #ffffff;
     border: none;
@@ -544,18 +549,16 @@ footer {
     font-size: 1.1rem;
 }
 
-/* DARK MODE */
+/* Dark mode */
 body.dark {
     background-color: #0f172a;
     color: #e5e7eb;
 }
 
-/* Navbar */
 body.dark header {
     background-color: #1e293b;
 }
 
-/* Cards */
 body.dark .card,
 body.dark .weather-card,
 body.dark .forecast-card,
@@ -572,20 +575,17 @@ body.dark .search-section:hover {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Inputs */
 body.dark input {
     background-color: #1e293b;
     color: #e5e7eb;
     border: 1px solid #475569;
 }
 
-/* Buttons */
 body.dark .secondary-btn {
     background-color: #334155;
     color: #e5e7eb;
 }
 
-/* Detail boxes */
 body.dark .detail-box {
     background-color: #334155;
 }
@@ -732,7 +732,7 @@ body.dark .last-updated {
     }
 }
 
-/* RESPONSIVE */
+/* Responsiveness */
 @media (max-width: 900px) {
     .info-section,
     .about-section,

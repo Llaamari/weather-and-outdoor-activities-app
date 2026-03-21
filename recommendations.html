@@ -1,3 +1,4 @@
+<!-- This file defines the "Recommendations" page in the app, which displays weather-based recommendations for the user -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
         <nav class="navbar">
             <h1 class="logo">ClimaGuide</h1>
             <ul class="nav-links">
+                <!-- Navigation -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="weather.html">Weather</a></li>
                 <li><a href="recommendations.html" class="active">Recommendations</a></li>
@@ -27,6 +29,7 @@
     <main class="container">
 
         <section class="page-header">
+            <!-- Page title -->
             <h2>Weather-based recommendations</h2>
             <p>
                 On this page, you'll find recommendations based on the weather in your selected city
@@ -36,6 +39,7 @@
 
         <section class="selected-city-section">
             <div class="weather-card">
+                <!-- Selected city -->
                 <h3 id="recommendationCityName">No city selected</h3>
                 <p id="recommendationWeatherText">
                     First, check the weather in your city to get personalized recommendations.
@@ -46,6 +50,7 @@
         <section class="recommendation-summary-section">
             <div id="recommendationSummaryCard" class="recommendation-summary-card">
                 <h3>Summary of the Day</h3>
+                <!-- Summary of the Day -->
                 <p id="recommendationSummary">
                     A summary of the recommendations will appear here once weather data is available.
                 </p>
@@ -55,6 +60,7 @@
         <section class="score-section">
             <div class="score-card">
                 <h3>Outdoor Score</h3>
+                <!-- Outdoor Score -->
                 <p id="scoreText">The score will appear here.</p>
                 <div class="score-bar">
                     <div id="scoreFill" class="score-fill"></div>
@@ -67,6 +73,7 @@
             <div class="recommendation-card">
                 <img src="assets/icons/shirt.svg" class="icon" alt="Shirt">
                 <h4>Clothing</h4>
+                <!-- Recommendations -->
                 <p id="clothingRecommendation">
                     The dress code is listed here.
                 </p>
@@ -95,6 +102,7 @@
 
             <div class="weather-details">
                 <div class="detail-box">
+                    <!-- Weather data -->
                     <span class="label">Temperature</span>
                     <span id="recommendationTemperature" class="value">-- °C</span>
                 </div>
@@ -117,6 +125,7 @@
         </section>
 
         <section class="actions-section">
+            <!-- Function buttons -->
             <a href="weather.html" class="primary-btn">Back to the weather</a>
             <a href="favorites.html" class="secondary-btn">Open Favorites</a>
         </section>
@@ -127,6 +136,7 @@
         <p>© 2026 ClimaGuide</p>
     </footer>
 
+    <!-- JavaScript -->
     <script src="js/storage.js"></script>
     <script src="js/recommendations.js"></script>
     <script src="js/main.js"></script>

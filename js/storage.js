@@ -1,3 +1,5 @@
+// This file defines the logic for the Favorites page
+// Searching for and saving favorites
 function getFavoriteCities() {
     return JSON.parse(localStorage.getItem("favoriteCities")) || [];
 }
@@ -6,6 +8,7 @@ function saveFavoriteCities(cities) {
     localStorage.setItem("favoriteCities", JSON.stringify(cities));
 }
 
+// Add to favorites
 function addFavoriteCity(city) {
     const favorites = getFavoriteCities();
     const cityExists = favorites.some(
@@ -20,6 +23,7 @@ function addFavoriteCity(city) {
     return favorites;
 }
 
+// Remove from favorites
 function removeFavoriteCity(city) {
     const favorites = getFavoriteCities().filter(
         (favorite) => favorite.toLowerCase() !== city.toLowerCase()
@@ -29,10 +33,12 @@ function removeFavoriteCity(city) {
     return favorites;
 }
 
+// Delete all
 function clearAllFavorites() {
     localStorage.removeItem("favoriteCities");
 }
 
+// Processing of the selected city
 function setSelectedCity(city) {
     localStorage.setItem("selectedCity", city);
 }
@@ -41,10 +47,12 @@ function getSelectedCity() {
     return localStorage.getItem("selectedCity") || "";
 }
 
+// Weather data recording
 function setWeatherData(data) {
     localStorage.setItem("weatherData", JSON.stringify(data));
 }
 
+// Creating a favorite card
 function createFavoriteCard(city) {
     const card = document.createElement("div");
     card.classList.add("favorite-card");
@@ -59,6 +67,7 @@ function createFavoriteCard(city) {
     actions.classList.add("favorite-actions");
 
     const showButton = document.createElement("button");
+    // Show weather
     showButton.classList.add("primary-btn");
     showButton.textContent = "Show weather";
     showButton.addEventListener("click", () => {
@@ -67,6 +76,7 @@ function createFavoriteCard(city) {
     });
 
     const removeButton = document.createElement("button");
+    // Delete
     removeButton.classList.add("danger-btn");
     removeButton.textContent = "Delete";
     removeButton.addEventListener("click", () => {
@@ -84,6 +94,7 @@ function createFavoriteCard(city) {
     return card;
 }
 
+// Rendering of all favorites
 function renderFavorites() {
     const favoritesContainer = document.getElementById("favoritesContainer");
     const favoritesMessage = document.getElementById("favoritesMessage");
@@ -108,6 +119,7 @@ function renderFavorites() {
     });
 }
 
+// Page loading
 document.addEventListener("DOMContentLoaded", () => {
     const clearFavoritesBtn = document.getElementById("clearFavoritesBtn");
 

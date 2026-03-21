@@ -1,4 +1,7 @@
+// This file handles the logic for the Recommendations page
+// The code runs once the page has loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Retrieve the page elements
     const cityName = document.getElementById("recommendationCityName");
     const weatherText = document.getElementById("recommendationWeatherText");
     const summary = document.getElementById("recommendationSummary");
@@ -12,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreText = document.getElementById("scoreText");
     const scoreFill = document.getElementById("scoreFill");
 
+    // calculateOutdoorScore(...)
     function calculateOutdoorScore(temp, windSpeed, weatherDescription) {
         let score = 100;
         const description = weatherDescription.toLowerCase();
@@ -69,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return score;
     }
 
+    // getScoreLabel(score)
     function getScoreLabel(score) {
         if (score >= 80) {
             return `🟢 Great day for outdoor activities (${score}/100)`;
@@ -81,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return `🔴 Poor outdoor conditions (${score}/100)`;
     }
 
+    // updateScoreUI(score)
     function updateScoreUI(score) {
         if (!scoreText || !scoreFill) {
             return;
@@ -98,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // getTemperatureColor(temp)
     function getTemperatureColor(temp) {
         if (temp < -10) return "#1d4ed8";
         if (temp < 0) return "#3b82f6";
@@ -107,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "#ef4444";
     }
 
+    // getClothingRecommendation(temp, windSpeed)
     function getClothingRecommendation(temp, windSpeed) {
         if (temp < 0) {
             return "Wear a warm winter coat, gloves, a beanie and insulated shoes.";
@@ -127,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "Light clothing should work well for today's weather.";
     }
 
+    // getActivityRecommendation(temp, windSpeed, weatherDescription)
     function getActivityRecommendation(temp, windSpeed, weatherDescription) {
         const description = weatherDescription.toLowerCase();
 
@@ -153,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "Outdoor activity is possible as long as you dress appropriately for the weather.";
     }
 
+    // getGearRecommendation(temp, windSpeed, weatherDescription)
     function getGearRecommendation(temp, windSpeed, weatherDescription) {
         const description = weatherDescription.toLowerCase();
 
@@ -175,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "No special extra equipment is necessarily needed.";
     }
 
+    // getSummaryText(temp, windSpeed, weatherDescription)
     function getSummaryText(temp, windSpeed, weatherDescription) {
         const description = weatherDescription.toLowerCase();
 
@@ -201,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "The weather is fairly ordinary, so normal preparation should be enough.";
     }
 
+    // renderRecommendations(weatherData)
     function renderRecommendations(weatherData) {
         const outdoorScore = calculateOutdoorScore(
             weatherData.current.temperature,
@@ -243,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateScoreUI(outdoorScore);
     }
 
+    // renderEmptyState()
     function renderEmptyState() {
         cityName.textContent = "No city selected";
         weatherText.textContent = "Search for a city on the weather page first.";
@@ -265,6 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // The data is retrieved from localStorage
     const storedWeatherData = localStorage.getItem("weatherData");
 
     if (storedWeatherData) {

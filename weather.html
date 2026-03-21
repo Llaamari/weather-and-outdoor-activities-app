@@ -1,3 +1,4 @@
+<!-- This file defines the Weather page of the app, which is the page where users search for and view weather information -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +14,7 @@
         <nav class="navbar">
             <h1 class="logo">ClimaGuide</h1>
             <ul class="nav-links">
+                <!-- Navigation -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="weather.html" class="active">Weather</a></li>
                 <li><a href="recommendations.html">Recommendations</a></li>
@@ -27,6 +29,7 @@
     <main class="container">
 
         <section class="page-header">
+            <!-- Page title -->
             <h2>City weather information</h2>
             <p>
                 Check the current weather and the forecast for the coming days for the city you've selected.
@@ -39,6 +42,7 @@
                 Search for a new city
             </h3>
             <div class="search-box">
+                <!-- Search function -->
                 <input
                     type="text"
                     id="weatherCityInput"
@@ -68,6 +72,7 @@
             <h3>Current weather</h3>
 
             <div id="currentWeatherCard" class="weather-card">
+                <!-- Current weather -->
                 <h4 id="cityName">No city selected</h4>
                 <p id="weatherDescription">The weather forecast is shown here.</p>
 
@@ -98,10 +103,12 @@
 
         <section class="forecast-section">
             <h3>Weather Forecast</h3>
+            <!-- Weather Forecast -->
             <div id="forecastContainer" class="forecast-grid"></div>
         </section>
 
         <section class="actions-section">
+            <!-- Features -->
             <button id="saveFavoriteBtn" class="primary-btn">Save as a favorite</button>
             <a href="recommendations.html" class="secondary-btn">See recommendations</a>
         </section>
@@ -112,11 +119,13 @@
         <p>© 2026 ClimaGuide</p>
     </footer>
 
+    <!-- Loader -->
     <div id="loader" class="loader hidden">
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
 
+    <!-- JavaScript files -->
     <script src="js/storage.js"></script>
     <script src="js/api.js"></script>
     <script src="js/weather.js"></script>

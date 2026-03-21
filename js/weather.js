@@ -1,4 +1,7 @@
+// This file contains the main JavaScript logic for the Weather page
+// The code will run once the page has loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Retrieve HTML elements
     const cityInput = document.getElementById("weatherCityInput");
     const searchBtn = document.getElementById("weatherSearchBtn");
     const locationBtn = document.getElementById("weatherLocationBtn");
@@ -20,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentWeatherData = null;
 
+    // Showing and hiding the loader
     function showLoader() {
         if (loader) {
             loader.classList.remove("hidden");
@@ -32,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Error and success messages
     function showError(message) {
         clearSuccess();
 
@@ -76,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Date formatting for the forecast
     function formatDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleDateString("en-EN", {
@@ -85,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Temperature color
     function getTemperatureColor(temp) {
         if (temp < -10) return "#1d4ed8";
         if (temp < 0) return "#3b82f6";
@@ -94,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return "#ef4444";
     }
 
+    // Rendering the forecast
     function renderForecast(forecast) {
         if (!forecastContainer) return;
 
@@ -115,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Displaying the current weather
     function renderCurrentWeather(data) {
         if (!data) return;
 
@@ -135,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateLastUpdated();
     }
 
+    // Loading weather by city name
     async function loadWeather(city) {
         try {
             showLoader();
@@ -156,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Loading weather data by coordinates
     async function loadWeatherByCoordinates(latitude, longitude) {
         try {
             showLoader();
@@ -180,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Simple search
     function handleSearch() {
         const city = cityInput.value.trim();
 
@@ -191,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadWeather(city);
     }
 
+    // Use of location
     function handleLocationSearch() {
         if (!navigator.geolocation) {
             showError("Geolocation is not supported by your browser.");
@@ -214,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
+    // Last updated
     function updateLastUpdated() {
         if (!lastUpdated) return;
         
@@ -229,6 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lastUpdated.textContent = `Last updated: ${timeString}`;
     }
 
+    // Add to Favorites
     function saveFavorite() {
         if (!currentWeatherData) {
             showError("Search weather first before saving favorites.");
@@ -251,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (searchBtn) {
+        // Event listeners
         searchBtn.addEventListener("click", handleSearch);
     }
 
@@ -270,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveFavoriteBtn.addEventListener("click", saveFavorite);
     }
 
+    // Initial state of the page
     const storedCoordinates = localStorage.getItem("selectedCoordinates");
     const selectedCity = getSelectedCity();
 

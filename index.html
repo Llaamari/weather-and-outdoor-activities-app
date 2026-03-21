@@ -1,3 +1,5 @@
+<!-- This is the HTML structure of the app's home page -->
+<!-- Page Settings -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- Header and navigation -->
     <header>
         <nav class="navbar">
             <h1 class="logo">ClimaGuide</h1>
@@ -25,7 +27,7 @@
         </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- Main content of the page -->
     <main class="container">
 
         <section class="hero">
@@ -36,7 +38,7 @@
             </p>
         </section>
 
-        <!-- SEARCH SECTION -->
+        <!-- Search section -->
         <section class="search-section">
             <h3>Check the weather</h3>
 
@@ -50,6 +52,7 @@
                 <button id="locationBtn" class="secondary-btn">Use my location</button>
             </div>
 
+            <!-- Error message -->
             <div id="errorCard" class="error-card hidden">
                 <h4>
                     <img src="assets/icons/cross.svg" class="icon" alt="Cross">
@@ -60,6 +63,7 @@
             </div>
         </section>
 
+        <!-- Latest searches -->
         <section class="history-section">
             <h3>Recent searches</h3>
             <div id="searchHistoryContainer" class="history-list">
@@ -67,7 +71,7 @@
             </div>
         </section>
 
-        <!-- QUICK INFO -->
+        <!-- Info Cards -->
         <section class="info-section">
             <div class="card">
                 <img src="assets/icons/sun.svg" class="icon" alt="Sun">
@@ -90,17 +94,18 @@
 
     </main>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer>
         <p>© 2026 ClimaGuide</p>
     </footer>
 
+    <!-- Loading animation -->
     <div id="loader" class="loader hidden">
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
 
-    <!-- JS -->
+    <!-- JavaScript files -->
     <script src="js/api.js"></script>
     <script src="js/main.js"></script>
 

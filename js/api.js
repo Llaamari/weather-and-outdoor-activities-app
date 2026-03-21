@@ -1,6 +1,9 @@
+// This is a JavaScript file that retrieves weather data from the Open-Meteo API and formats it for use in the app
+// API URLs
 const GEO_API_BASE_URL = "https://geocoding-api.open-meteo.com/v1/search";
 const WEATHER_API_BASE_URL = "https://api.open-meteo.com/v1/forecast";
 
+// getCoordinatesByCity(city)
 async function getCoordinatesByCity(city) {
     const url = `${GEO_API_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
 
@@ -26,6 +29,7 @@ async function getCoordinatesByCity(city) {
     };
 }
 
+// getWeatherByCoordinates(latitude, longitude)
 async function getWeatherByCoordinates(latitude, longitude) {
     const url = `${WEATHER_API_BASE_URL}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5`;
 
@@ -38,6 +42,7 @@ async function getWeatherByCoordinates(latitude, longitude) {
     return await response.json();
 }
 
+// getWeatherDescription(weatherCode)
 function getWeatherDescription(weatherCode) {
     const weatherDescriptions = {
         0: "Clear",
@@ -73,6 +78,7 @@ function getWeatherDescription(weatherCode) {
     return weatherDescriptions[weatherCode] || "Weather conditions unknown";
 }
 
+// formatWeatherData(locationData, weatherData)
 function formatWeatherData(locationData, weatherData) {
     return {
         city: locationData.name,
@@ -98,6 +104,8 @@ function formatWeatherData(locationData, weatherData) {
     };
 }
 
+// fetchWeatherData(city)
+// By name of the city
 async function fetchWeatherData(city) {
     const locationData = await getCoordinatesByCity(city);
     const weatherData = await getWeatherByCoordinates(
@@ -108,6 +116,8 @@ async function fetchWeatherData(city) {
     return formatWeatherData(locationData, weatherData);
 }
 
+// fetchWeatherDataByCoordinates(latitude, longitude)
+// By coordinates
 async function fetchWeatherDataByCoordinates(latitude, longitude) {
     const weatherData = await getWeatherByCoordinates(latitude, longitude);
 

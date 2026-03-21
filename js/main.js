@@ -1,4 +1,7 @@
+// This is the JavaScript logic on the home page that handles user interactions
+// The code is executed only after all the HTML has loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Search for elements
     const cityInput = document.getElementById("cityInput");
     const searchBtn = document.getElementById("searchBtn");
     const errorMessage = document.getElementById("errorMessage");
@@ -9,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("loader");
     const errorCard = document.getElementById("errorCard");
 
+    // Loader
     function showLoader() {
         if (loader) {
             loader.classList.remove("hidden");
@@ -21,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Error messages
     function showMainError(message) {
         if (errorMessage) {
             errorMessage.textContent = message;
@@ -41,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Search history
     function getSearchHistory() {
         return JSON.parse(localStorage.getItem("searchHistory")) || [];
     }
@@ -96,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Search
     function handleSearch() {
         const city = cityInput ? cityInput.value.trim() : "";
 
@@ -126,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Change theme
     function setTheme(theme) {
         if (theme === "dark") {
             document.body.classList.add("dark");
@@ -155,7 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     
+    // Use of Location
     function handleLocationSearch() {
+        // Amendment
         if (!navigator.geolocation) {
             showMainError("Geolocation is not supported by your browser.");
             return;
@@ -164,14 +174,18 @@ document.addEventListener("DOMContentLoaded", () => {
         clearMainError();
         showLoader();
         
+        // Request location
         navigator.geolocation.getCurrentPosition(
             async (position) => {
                 try {
+                    // Search successful
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
                     
+                    // Checking the weather
                     const weatherData = await fetchWeatherDataByCoordinates(lat, lon);
                     
+                    // Save
                     localStorage.setItem("selectedCity", weatherData.city);
                     localStorage.setItem("weatherData", JSON.stringify(weatherData));
                     localStorage.setItem("selectedCoordinates", JSON.stringify({
@@ -179,9 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         longitude: lon
                     }));
 
+                    // Refresh history
                     addToSearchHistory(weatherData.city);
                     renderSearchHistory();
 
+                    // Goes to the Weather page
                     window.location.href = "weather.html";
                 } catch (error) {
                     hideLoader();
@@ -196,9 +212,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     if (locationBtn) {
+        // Event listeners
         locationBtn.addEventListener("click", handleLocationSearch);
     }
 
+    // Final remarks
     renderSearchHistory();
     hideLoader();
 });
